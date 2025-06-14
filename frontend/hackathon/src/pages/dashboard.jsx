@@ -51,11 +51,11 @@ const Dashboard = () => {
   }, []); // Empty dependency array to run only once
 
   const handleDoctorLogin = () => {
-    navigate('/doctor-login');
+    navigate('/doctor/auth');
   };
 
   const handlePatientLogin = () => {
-    navigate('/patient-login');
+    navigate('/patinet/auth');
   };
 
   const handleMouseMove = (e, cardType) => {
@@ -305,7 +305,7 @@ const Dashboard = () => {
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
