@@ -1,0 +1,7 @@
+fastapi==0.109.1
+uvicorn==0.27.0
+python-multipart==0.0.6  # For file uploads
+scikit-learn==1.4.0      # For demo AI model
+joblib==1.3.2            # To save/load ML model
+pandas==2.1.4            # For data handling
+firebase-admin==6.2.0    # Optional: Firebase server-side access
