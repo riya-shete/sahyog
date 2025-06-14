@@ -75,7 +75,7 @@ const Dashboard = () => {
       </div>
 
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 px-6 py-4 relative z-10">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 px-6 py-1 relative z-10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
@@ -104,7 +104,7 @@ const Dashboard = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Welcome to{' '}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent hover:from-blue-500 hover:to-indigo-500 transition-all duration-300">
-                MediConnect
+                SahYog
               </span>
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed mb-8">
