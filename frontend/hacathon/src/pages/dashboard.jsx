@@ -83,7 +83,7 @@ const Dashboard = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-800 to-indigo-800 bg-clip-text text-transparent hover:from-blue-600 hover:to-indigo-600 transition-all duration-300">
-                SehYoog
+                SahYog
               </h1>
               <p className="text-sm text-gray-600">Healthcare at your fingertips</p>
             </div>
