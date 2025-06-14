@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
 } from 'firebase/auth'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 
@@ -19,11 +19,14 @@ export const registerUser = async ({ firstName, lastName, email, phone, password
       email,
       phone,
       role,
+      uid: userCredential.user.uid,
       createdAt: new Date().toISOString()
     }
 
-    await setDoc(doc(db, 'users', userCredential.user.uid), userData)
-    sessionStorage.setItem('userSession', JSON.stringify(userData))
+    const collectionName = role === 'doctor' ? 'doctors' : 'patients'
+    await setDoc(doc(db, collectionName, userCredential.user.uid), userData)
+
+    localStorage.setItem('userSession', JSON.stringify(userData))
 
     return userCredential
   } catch (error) {
@@ -35,12 +38,17 @@ export const registerUser = async ({ firstName, lastName, email, phone, password
 export const loginUser = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-    const docSnap = await getDoc(doc(db, 'users', userCredential.user.uid))
+    const uid = userCredential.user.uid
+
+    let docSnap = await getDoc(doc(db, 'doctors', uid))
+    if (!docSnap.exists()) {
+      docSnap = await getDoc(doc(db, 'patients', uid))
+    }
 
     if (docSnap.exists()) {
       const userData = docSnap.data()
-      sessionStorage.setItem('userSession', JSON.stringify(userData))
-      return userCredential
+      localStorage.setItem('userSession', JSON.stringify(userData))
+      return userData
     } else {
       throw new Error('User data not found in Firestore')
     }
@@ -52,7 +60,7 @@ export const loginUser = async (email, password) => {
 
 export const logoutUser = async () => {
   try {
-    sessionStorage.removeItem('userSession')
+    localStorage.removeItem('userSession')
     await signOut(auth)
   } catch (error) {
     console.error('Logout error:', error.code, error.message)

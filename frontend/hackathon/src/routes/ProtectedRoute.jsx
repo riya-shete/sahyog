@@ -2,12 +2,14 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const ProtectedRoute = ({ children, allowedRole }) => {
-  const { currentUser, userRole } = useAuth()
+  const { currentUser, userRole, loading } = useAuth()
+
+  if (loading) return <div className="text-center mt-10 text-gray-600">Loading...</div>
 
   if (!currentUser) return <Navigate to="/" />
 
-  if (allowedRole && userRole !== allowedRole) {
-    const redirectPath = userRole === 'doctor' ? '/doctor/dashboard' : '/patinet/dashboard'
+  if (userRole !== allowedRole) {
+    const redirectPath = userRole === 'doctor' ? '/doctor/dashboard' : '/patient/dashboard'
     return <Navigate to={redirectPath} />
   }
 
