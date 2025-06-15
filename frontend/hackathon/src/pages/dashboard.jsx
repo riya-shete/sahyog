@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, UserCheck, Stethoscope, FileText, Heart, Shield, ChevronRight, Activity, Pill, History, Upload, TestTube, AlertCircle } from 'lucide-react';
 import heroanimation from "../assets/dashbaord_animation.json";
-import { auth, db, storage } from "../../firebase"; // Verify path
-import { app } from "../../firebase";
+import { auth, db, storage } from "../firebase"; // Verify path
+import { app } from "../firebase";
 console.log("Firebase App:", app);
 import { ref, uploadBytes } from "firebase/storage";
 
